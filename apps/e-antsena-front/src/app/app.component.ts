@@ -4,6 +4,7 @@ import { NxWelcomeComponent } from './nx-welcome.component';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { fontAwesomeIcons } from './shared/font-awesome-icons';
 import { NavbarComponent } from "./layout/navbar/navbar.component";
+import { FooterComponent } from "./layout/footer/footer.component";
 
 @Component({
   standalone: true,
@@ -11,7 +12,8 @@ import { NavbarComponent } from "./layout/navbar/navbar.component";
     NxWelcomeComponent,
     RouterModule,
     FontAwesomeModule,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
 ],
   selector: 'app-root',
   templateUrl: './app.component.html',
