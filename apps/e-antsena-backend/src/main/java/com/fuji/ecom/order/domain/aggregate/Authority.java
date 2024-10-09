@@ -2,8 +2,8 @@ package com.fuji.ecom.order.domain.aggregate;
 
 import com.fuji.ecom.order.domain.user.AuthorityName;
 import com.fuji.ecom.shared.error.domain.Assert;
-import lombok.Builder;
 import lombok.Getter;
+import org.jilt.Builder;
 
 @Builder
 @Getter

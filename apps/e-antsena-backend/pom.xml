@@ -62,6 +62,12 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+    <dependency>
+      <groupId>cc.jilt</groupId>
+      <artifactId>jilt</artifactId>
+      <version>1.6.1</version>
+      <scope>provided</scope> <!-- Jilt is not needed at runtime -->
+    </dependency>
 
     <dependency>
       <groupId>org.springframework.boot</groupId>
