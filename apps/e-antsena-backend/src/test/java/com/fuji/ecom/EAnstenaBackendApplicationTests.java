@@ -1,10 +1,10 @@
-package com.fuji.e_antsena;
+package com.fuji.ecom;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EAntsenaApplicationTests {
+class EAnstenaBackendApplicationTests {
 
 	@Test
 	void contextLoads() {

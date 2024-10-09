@@ -1,13 +1,13 @@
-package com.fuji.e_antsena;
+package com.fuji.ecom;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EAntsenaApplication {
+public class EAnstenaBackendApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EAntsenaApplication.class, args);
+		SpringApplication.run(EAnstenaBackendApplication.class, args);
 	}
 
 }
