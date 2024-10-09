@@ -1,5 +1,7 @@
 package com.fuji.ecom.shared.authentication.domain;
 
+import com.fuji.ecom.shared.error.domain.Assert;
+
 import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Stream;
