@@ -1,10 +1,9 @@
-package com.fuji.ecom.order.domain.aggregate;
+package com.fuji.ecom.order.domain.user.aggregate;
 
-import com.fuji.ecom.order.domain.user.*;
+import com.fuji.ecom.order.domain.user.vo.*;
 import com.fuji.ecom.shared.error.domain.Assert;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import org.jilt.Builder;
 
 import java.time.Instant;
@@ -70,7 +69,7 @@ public class User {
     }
 
     Set<Authority> authorities = rolesFromAccessToken.stream()
-      .map(authority -> AuthorityBuilder.authority().name(new AuthorityName(authority)).build())
+      .map(authority -> AuthorityBuilder.authority().authorityName(new AuthorityName(authority)).build())
       .collect(Collectors.toSet());
 
     userBuilder.authorities(authorities);

@@ -81,8 +81,8 @@ application:
     max-age: 300
   kinde:
     api: https://codecake.kinde.com
-    client-id: ${KINDE_CLIENT_ID}
-    client-secret: ${KINDE_CLIENT_SECRET}
+    client-id: client-id #${KINDE_CLIENT_ID}
+    client-secret: client-sercret #${KINDE_CLIENT_SECRET}
     audience: https://codecake.kinde.com/api
   stripe:
     api-key: ${STRIPE_API_KEY}

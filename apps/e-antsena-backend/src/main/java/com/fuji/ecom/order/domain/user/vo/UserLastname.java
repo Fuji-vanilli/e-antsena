@@ -1,4 +1,4 @@
-package com.fuji.ecom.order.domain.user;
+package com.fuji.ecom.order.domain.user.vo;
 
 import com.fuji.ecom.shared.error.domain.Assert;
 
