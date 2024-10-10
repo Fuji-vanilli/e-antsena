@@ -80,10 +80,10 @@ application:
     allow-credentials: false
     max-age: 300
   kinde:
-    api: https://codecake.kinde.com
-    client-id: client-id #${KINDE_CLIENT_ID}
-    client-secret: client-sercret #${KINDE_CLIENT_SECRET}
-    audience: https://codecake.kinde.com/api
+    api: https://fuji.kinde.com
+    client-id: ${KINDE_CLIENT_ID}
+    client-secret: ${KINDE_CLIENT_SECRET}
+    audience: https://fuji.kinde.com/api
   stripe:
     api-key: ${STRIPE_API_KEY}
     webhook-secret: ${STRIPE_WEBHOOK_SECRET}

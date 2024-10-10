@@ -32,7 +32,7 @@ public class AuthorityEntity {
 
   public static Set<AuthorityEntity> from(Set<Authority> authorities) {
     return authorities.stream()
-      .map(authority -> AuthorityEntityBuilder.authorityEntity().name(authority.getAuthorityName().username()).build())
+      .map(authority -> AuthorityEntityBuilder.authorityEntity().name(authority.getAuthorityName().name()).build())
       .collect(Collectors.toSet());
   }
 

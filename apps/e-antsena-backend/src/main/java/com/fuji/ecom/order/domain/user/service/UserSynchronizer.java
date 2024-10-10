@@ -6,6 +6,7 @@ import com.fuji.ecom.order.domain.user.vo.UserAddressToUpdate;
 import com.fuji.ecom.order.infrastructure.secondary.service.KindeService;
 import com.fuji.ecom.shared.authentication.application.AuthenticatedUser;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.jwt.Jwt;
 
 import java.time.Instant;
@@ -43,12 +44,12 @@ public class UserSynchronizer {
     }
   }
 
-  private void updateUser(User user, User existingUser) {
+  public void updateUser(User user, User existingUser) {
     existingUser.updateFromUser(user);
     userRepository.save(existingUser);
   }
 
-  private void updateAddress(UserAddressToUpdate userAddressToUpdate) {
+  public void updateAddress(UserAddressToUpdate userAddressToUpdate) {
     userRepository.updateAddres(userAddressToUpdate.userPublicID(), userAddressToUpdate);
   }
 }
