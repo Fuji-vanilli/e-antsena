@@ -1,9 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { CreateQueryResult } from '@tanstack/angular-query-experimental';
+import { CreateQueryResult, injectQuery } from '@tanstack/angular-query-experimental';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { ConnectedUser } from '../shared/model/user.model';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -20,6 +20,13 @@ export class Oauth2Service {
   notConnected= 'NOT_CONNECTED';
 
   constructor() { }
+
+  fetch(): CreateQueryResult<ConnectedUser> {
+    return injectQuery(()=> ({
+      queryKey: ['connected-user'],
+      queryFn: ()=> firstValueFrom(this.fetchUserHttp(false))
+    }))
+  }
 
   fetchUserHttp(forceSync: boolean): Observable<ConnectedUser> {
     const params= new HttpParams().set('forceSync', forceSync);
