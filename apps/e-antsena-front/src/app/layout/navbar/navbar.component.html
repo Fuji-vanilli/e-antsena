@@ -39,14 +39,22 @@
                 }
                 
             </div>
-            <ul class="dropdown-content menu menu-lg bg-base-100 rounded-box z-10 w-52 p-2 shadow">
-                <li>
-                    <button class="link" (click)="login()">Login</button>
-                </li>
-                <li>
-                    <button class="link" (click)="logout()">Logout</button>
-                </li>
-            </ul>
+ 
+                <ul class="dropdown-content menu menu-lg bg-base-100 rounded-box z-10 w-52 p-2 shadow">
+                    <li>
+                        <button class="link" (click)="closeDropDownMenu()">My orders</button>
+                    </li>
+                    <li>
+                        <button class="link" (click)="logout()">Logout</button>
+                    </li>
+                </ul>
+
+                <ul class="dropdown-content menu menu-lg bg-base-100 rounded-box z-10 w-52 p-2 shadow">
+                    <li>
+                        <button class="link" (click)="login()">Login</button>
+                    </li>
+                </ul>
+            
         </div>
         <div class="dropdown dropdown-end me-2" routerLink="/cart">
             <div tabindex="0" role="button">

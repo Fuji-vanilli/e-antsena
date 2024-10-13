@@ -1,14 +1,18 @@
-import { isPlatformBrowser } from '@angular/common';
 import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { AbstractSecurityStorage } from 'angular-auth-oidc-client';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SsrStorageService implements AbstractSecurityStorage {
+  private platformId = inject(PLATFORM_ID);
 
-  private platformId= inject(PLATFORM_ID);
-  constructor() { }
+  clear(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      sessionStorage.clear();
+    }
+  }
 
   read(key: string): string | null {
     if (isPlatformBrowser(this.platformId)) {
@@ -18,19 +22,15 @@ export class SsrStorageService implements AbstractSecurityStorage {
     }
   }
 
-  write(key: string, value: string): void {
-    if (isPlatformBrowser(this.platformId)) {
-      sessionStorage.setItem(key, value);
-    } 
-  }
   remove(key: string): void {
     if (isPlatformBrowser(this.platformId)) {
       sessionStorage.removeItem(key);
-    } 
+    }
   }
-  clear(): void {
+
+  write(key: string, value: string): void {
     if (isPlatformBrowser(this.platformId)) {
-      sessionStorage.clear();
+      sessionStorage.setItem(key, value);
     }
   }
 }

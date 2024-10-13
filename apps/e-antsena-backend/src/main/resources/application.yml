@@ -53,8 +53,8 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: https://fuji.kinde.com
-          jwk-set-uri: https://fuji.kinde.com/.well-known/jwks
+          issuer-uri: https://itachi.kinde.com
+          jwk-set-uri: https://itachi.kinde.com/.well-known/jwks
           audiences: http://localhost:7000/api
   devtools:
     restart:
@@ -80,7 +80,7 @@ application:
     allow-credentials: false
     max-age: 300
   kinde:
-    api: https://fuji.kinde.com
+    api: https://itachi.kinde.com
     client-id: ${KINDE_CLIENT_ID}
     client-secret: ${KINDE_CLIENT_SECRET}
     audiences: http://localhost:7000/api

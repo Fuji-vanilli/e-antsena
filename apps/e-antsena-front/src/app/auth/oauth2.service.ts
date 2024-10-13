@@ -1,68 +1,70 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { CreateQueryResult, injectQuery } from '@tanstack/angular-query-experimental';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
+import {
+  CreateQueryResult,
+  injectQuery,
+} from '@tanstack/angular-query-experimental';
 import { ConnectedUser } from '../shared/model/user.model';
 import { firstValueFrom, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class Oauth2Service {
+  http = inject(HttpClient);
 
-  httpClient= inject(HttpClient);
-
-  oidcSecurityService= inject(OidcSecurityService);
+  oidcSecurityService = inject(OidcSecurityService);
 
   connectedUserQuery: CreateQueryResult<ConnectedUser> | undefined;
 
-  notConnected= 'NOT_CONNECTED';
-
-  constructor() { }
+  notConnected = 'NOT_CONNECTED';
 
   fetch(): CreateQueryResult<ConnectedUser> {
-    return injectQuery(()=> ({
+    return injectQuery(() => ({
       queryKey: ['connected-user'],
-      queryFn: ()=> firstValueFrom(this.fetchUserHttp(false))
-    }))
+      queryFn: () => firstValueFrom(this.fetchUserHttp(false)),
+    }));
   }
 
-  fetchUserHttp(forceSync: boolean): Observable<ConnectedUser> {
-    const params= new HttpParams().set('forceSync', forceSync);
-
-    return this.httpClient.get<ConnectedUser>(`${environment.apiUrl}/users/authenticateds`, { params });
+  fetchUserHttp(forceResync: boolean): Observable<ConnectedUser> {
+    const params = new HttpParams().set('forceResync', forceResync);
+    return this.http.get<ConnectedUser>(
+      `${environment.apiUrl}/users/authenticated`,
+      { params }
+    );
   }
 
-  login() {
+  login(): void {
     this.oidcSecurityService.authorize();
   }
 
-  logout() {
+  logout(): void {
     this.oidcSecurityService.logoff().subscribe();
   }
 
-  initAuthentication() {
-    this.oidcSecurityService.checkAuth().subscribe(
-      authInfo=> {
-        if (authInfo.isAuthenticated) {
-          console.log('user connected...');
-          
-        } else {
-          console.log('user not connected!');
-          
-        }
+  initAuthentication(): void {
+    this.oidcSecurityService.checkAuth().subscribe((authInfo) => {
+      if (authInfo.isAuthenticated) {
+        console.log('user connected');
+      } else {
+        console.log('user not connected');
       }
-    )
+    });
   }
 
-  hasAnyAuthorities(connectedUser: ConnectedUser, authorities: Array<string> | string): boolean {
+  hasAnyAuthorities(
+    connectedUser: ConnectedUser,
+    authorities: Array<string> | string
+  ): boolean {
     if (!Array.isArray(authorities)) {
-      authorities= [authorities];
+      authorities = [authorities];
     }
-
     if (connectedUser.authorities) {
-      return connectedUser.authorities.some((authority: string)=> authorities.includes(authority));
+      return connectedUser.authorities.some((authority: string) =>
+        authorities.includes(authority)
+      );
     } else {
       return false;
     }

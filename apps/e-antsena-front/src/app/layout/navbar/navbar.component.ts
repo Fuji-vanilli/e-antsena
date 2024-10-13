@@ -1,41 +1,55 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { Oauth2Service } from '../../auth/oauth2.service';
+import { ClickOutside } from 'ngxtension/click-outside';
+
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, RouterLink, FontAwesomeModule],
+  imports: [CommonModule, RouterLink, FaIconComponent, ClickOutside],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
-export class NavbarComponent {
-  
-  oauth2Service= inject(Oauth2Service);
+export class NavbarComponent implements OnInit {
+  oauth2Service = inject(Oauth2Service);
 
-  connectedUserQuery= this.oauth2Service.connectedUserQuery;
+  nbItemsInCart = 0;
 
-  login() {
-    this.closeDropdownMenu();
+  connectedUserQuery = this.oauth2Service.connectedUserQuery;
+
+
+  login(): void {
+    this.closeDropDownMenu();
     this.oauth2Service.login();
   }
 
-  logout() {
-    this.closeDropdownMenu();
+  logout(): void {
+    this.closeDropDownMenu();
     this.oauth2Service.logout();
   }
 
-  isConnected() {
-    return (this.connectedUserQuery?.status()=== 'success' && this.connectedUserQuery?.data()?.email!== this.oauth2Service.notConnected);
+  isConnected(): boolean {
+    return (
+      this.connectedUserQuery?.status() === 'success' &&
+      this.connectedUserQuery?.data()?.email !== this.oauth2Service.notConnected
+    );
   }
 
-  closeDropdownMenu() {
-    const bodyElement= document.activeElement as HTMLBodyElement;
-
+  closeDropDownMenu() {
+    const bodyElement = document.activeElement as HTMLBodyElement;
     if (bodyElement) {
       bodyElement.blur();
     }
+  }
+
+  closeMenu(menu: HTMLDetailsElement) {
+    menu.removeAttribute('open');
+  }
+
+  ngOnInit(): void {
+    
   }
 }

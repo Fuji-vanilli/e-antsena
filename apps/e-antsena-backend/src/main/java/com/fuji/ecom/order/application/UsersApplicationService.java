@@ -19,19 +19,20 @@ public class UsersApplicationService {
   private final UserReader userReader;
 
   public UsersApplicationService(UserRepository userRepository, KindeService kindeService) {
-    userSynchronizer= new UserSynchronizer(userRepository, kindeService);
-    userReader= new UserReader(userRepository);
+    this.userSynchronizer = new UserSynchronizer(userRepository, kindeService);
+    this.userReader = new UserReader(userRepository);
   }
+
   @Transactional
-  public User getAuthenticatedUserWithSync(Jwt jwtToken, boolean forceSync) {
-    userSynchronizer.syncWithIdp(jwtToken, forceSync);
-    return userReader.getByEmail(new UserEmail(AuthenticatedUser.username().username()))
+  public User getAuthenticatedUserWithSync(Jwt jwtToken, boolean forceResync) {
+    userSynchronizer.syncWithIdp(jwtToken, forceResync);
+    return userReader.getByEmail(new UserEmail(AuthenticatedUser.username().get()))
       .orElseThrow();
   }
 
-  @Transactional(readOnly= true)
+  @Transactional(readOnly = true)
   public User getAuthenticatedUser() {
-    return userReader.getByEmail(new UserEmail(AuthenticatedUser.username().username()))
+    return userReader.getByEmail(new UserEmail(AuthenticatedUser.username().get()))
       .orElseThrow();
   }
 

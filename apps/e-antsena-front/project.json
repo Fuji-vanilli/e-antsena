@@ -47,7 +47,7 @@
           "outputHashing": "all",
           "fileReplacements": [
             {
-              "replace": "apps/e-antsena-front/src/environments/environment.ts",
+              "replace": "apps/e-antsena-front/src/environments/environments.ts",
               "with": "apps/e-antsena-front/src/environments/environment.production.ts"
             }
           ]
@@ -58,7 +58,7 @@
           "sourceMap": true,
           "fileReplacements": [
             {
-              "replace": "apps/e-antsena-front/src/environments/environment.ts",
+              "replace": "apps/e-antsena-front/src/environments/environments.ts",
               "with": "apps/e-antsena-front/src/environments/environment.development.ts"
             }   
           ]

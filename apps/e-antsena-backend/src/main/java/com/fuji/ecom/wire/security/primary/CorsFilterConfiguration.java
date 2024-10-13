@@ -10,17 +10,20 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 @Configuration
-@RequiredArgsConstructor
 public class CorsFilterConfiguration {
-  private CorsConfiguration corsConfiguration;
+
+  private final CorsConfiguration corsConfiguration;
+
+  public CorsFilterConfiguration(CorsConfiguration corsConfiguration) {
+    this.corsConfiguration = corsConfiguration;
+  }
 
   @Bean
   public FilterRegistrationBean<CorsFilter> simpleCorsFilter() {
-    UrlBasedCorsConfigurationSource source= new UrlBasedCorsConfigurationSource();
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", corsConfiguration);
-    FilterRegistrationBean<CorsFilter> bean= new FilterRegistrationBean<>(new CorsFilter(source));
+    FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter(source));
     bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
-
     return bean;
   }
 }
