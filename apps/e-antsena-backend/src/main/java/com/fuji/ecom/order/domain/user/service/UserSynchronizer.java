@@ -15,10 +15,14 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@RequiredArgsConstructor
 public class UserSynchronizer {
   private final UserRepository userRepository;
   private final KindeService kindeService;
+
+  public UserSynchronizer(UserRepository userRepository, KindeService kindeService) {
+    this.userRepository= userRepository;
+    this.kindeService= kindeService;
+  }
 
   private static final String UPDATE_AT_KEY= "last_signed_in";
 

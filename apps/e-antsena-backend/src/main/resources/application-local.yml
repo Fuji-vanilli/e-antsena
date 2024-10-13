@@ -3,7 +3,7 @@ logging:
     ROOT: INFO
     org.hibernate.SQL: DEBUG
     org.springframework.security: INFO
-    com.fuji.e_antsena: DEBUG
+    com.fuji.ecom: DEBUG
     org.apache.hc.client5.http: INFO
 
 spring:

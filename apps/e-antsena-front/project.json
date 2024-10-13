@@ -60,7 +60,7 @@
             {
               "replace": "apps/e-antsena-front/src/environments/environment.ts",
               "with": "apps/e-antsena-front/src/environments/environment.development.ts"
-            }
+            }   
           ]
         }
       },

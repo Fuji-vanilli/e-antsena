@@ -31,7 +31,7 @@ export class Oauth2Service {
   fetchUserHttp(forceSync: boolean): Observable<ConnectedUser> {
     const params= new HttpParams().set('forceSync', forceSync);
 
-    return this.httpClient.get<ConnectedUser>(`${environment.apiUrl}/api/users/authenticated`, { params });
+    return this.httpClient.get<ConnectedUser>(`${environment.apiUrl}/users/authenticateds`, { params });
   }
 
   login() {
@@ -46,10 +46,10 @@ export class Oauth2Service {
     this.oidcSecurityService.checkAuth().subscribe(
       authInfo=> {
         if (authInfo.isAuthenticated) {
-          console.log('connected');
+          console.log('user connected...');
           
         } else {
-          console.log('not connected');
+          console.log('user not connected!');
           
         }
       }

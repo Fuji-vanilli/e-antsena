@@ -15,13 +15,24 @@ export class NavbarComponent {
   
   oauth2Service= inject(Oauth2Service);
 
+  connectedUserQuery= this.oauth2Service.connectedUserQuery;
+
   login() {
     this.closeDropdownMenu();
     this.oauth2Service.login();
   }
 
+  logout() {
+    this.closeDropdownMenu();
+    this.oauth2Service.logout();
+  }
+
+  isConnected() {
+    return (this.connectedUserQuery?.status()=== 'success' && this.connectedUserQuery?.data()?.email!== this.oauth2Service.notConnected);
+  }
+
   closeDropdownMenu() {
-    let bodyElement= document.activeElement as HTMLBodyElement;
+    const bodyElement= document.activeElement as HTMLBodyElement;
 
     if (bodyElement) {
       bodyElement.blur();

@@ -6,14 +6,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("api/users")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class UserResource {
   private final UsersApplicationService usersApplicationService;
 
+  @GetMapping("/authenticated")
   public ResponseEntity<RestUser> getAuthenticatedUser(
     @AuthenticationPrincipal Jwt jwtToken,
     @RequestParam boolean forceSync

@@ -53,9 +53,9 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: https://codecake.kinde.com
-          jwk-set-uri: https://codecake.kinde.com/.well-known/jwks
-          audiences: http://localhost:8080/api
+          issuer-uri: https://fuji.kinde.com
+          jwk-set-uri: https://fuji.kinde.com/.well-known/jwks
+          audiences: http://localhost:7000/api
   devtools:
     restart:
       enabled: false
@@ -83,7 +83,7 @@ application:
     api: https://fuji.kinde.com
     client-id: ${KINDE_CLIENT_ID}
     client-secret: ${KINDE_CLIENT_SECRET}
-    audience: https://fuji.kinde.com/api
+    audiences: http://localhost:7000/api
   stripe:
     api-key: ${STRIPE_API_KEY}
     webhook-secret: ${STRIPE_WEBHOOK_SECRET}
