@@ -12,7 +12,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.security.oauth2.jwt.Jwt;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 
 import java.util.List;
 import java.util.Map;
@@ -53,9 +52,6 @@ public final class AuthenticatedUser {
       return details.getUsername();
     }
 
-    if (authentication instanceof JwtAuthenticationToken token) {
-      return (String) token.getToken().getClaims().get(PREFERRED_USERNAME);
-    }
 
     if (authentication.getPrincipal() instanceof DefaultOidcUser oidcUser) {
       return (String) oidcUser.getAttributes().get(PREFERRED_USERNAME);
@@ -92,9 +88,6 @@ public final class AuthenticatedUser {
   public static Map<String, Object> attributes() {
     Authentication token = authentication().orElseThrow(NotAuthenticatedUserException::new);
 
-    if (token instanceof JwtAuthenticationToken jwtAuthenticationToken) {
-      return jwtAuthenticationToken.getTokenAttributes();
-    }
 
     throw new UnknownAuthenticationException();
   }

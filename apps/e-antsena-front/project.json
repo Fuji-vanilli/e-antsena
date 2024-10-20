@@ -68,6 +68,10 @@
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "buildTarget": "e-antsena-front:build:development",
+        "proxyConfig": "apps/e-antsena-front/proxy.conf.mjs"
+      },
       "configurations": {
         "production": {
           "buildTarget": "e-antsena-front:build:production"

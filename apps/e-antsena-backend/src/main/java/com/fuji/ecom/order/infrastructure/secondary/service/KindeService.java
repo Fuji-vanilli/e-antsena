@@ -10,8 +10,6 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
-import javax.swing.text.html.Option;
-import java.net.URI;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
@@ -57,7 +55,7 @@ public class KindeService {
   }
 
   public Map<String, Object> getUserInfo(String userID) {
-    String token = getToken().orElseThrow(() -> new IllegalStateException("token not found"));
+    String token = getToken().orElseThrow(() -> new IllegalStateException("token not found from kinde provider"));
 
     var typeRef=  new ParameterizedTypeReference<Map<String, Object>>() {};
 

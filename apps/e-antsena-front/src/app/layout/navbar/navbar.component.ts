@@ -2,8 +2,8 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { Oauth2Service } from '../../auth/oauth2.service';
 import { ClickOutside } from 'ngxtension/click-outside';
+import { Auth0Service } from '../../auth/auth0.service';
 
 
 @Component({
@@ -14,28 +14,20 @@ import { ClickOutside } from 'ngxtension/click-outside';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent implements OnInit {
-  oauth2Service = inject(Oauth2Service);
 
-  nbItemsInCart = 0;
-
-  connectedUserQuery = this.oauth2Service.connectedUserQuery;
-
+  authService= inject(Auth0Service);
 
   login(): void {
     this.closeDropDownMenu();
-    this.oauth2Service.login();
+    this.authService.login();
   }
 
   logout(): void {
     this.closeDropDownMenu();
-    this.oauth2Service.logout();
   }
 
   isConnected(): boolean {
-    return (
-      this.connectedUserQuery?.status() === 'success' &&
-      this.connectedUserQuery?.data()?.email !== this.oauth2Service.notConnected
-    );
+    return false;
   }
 
   closeDropDownMenu() {

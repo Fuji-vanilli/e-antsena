@@ -3,6 +3,7 @@ logging:
     ROOT: INFO
     org.hibernate.SQL: INFO
     com.fuji.e_antsena: INFO
+    org.springframework.security: TRACE
 
 spring:
   application:
@@ -49,13 +50,13 @@ spring:
     default-schema: ecommerce_yt
     contexts: dev
   #    drop-first: true
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: https://itachi.kinde.com
-          jwk-set-uri: https://itachi.kinde.com/.well-known/jwks
-          audiences: http://localhost:7000/api
+ # security:
+  #  oauth2:
+   #   resourceserver:
+    #    jwt:
+     #     issuer-uri: https://itachi.kinde.com
+      #    jwk-set-uri: https://itachi.kinde.com/.well-known/jwks
+       #   audiences: http://localhost:7000/api
   devtools:
     restart:
       enabled: false
@@ -87,3 +88,4 @@ application:
   stripe:
     api-key: ${STRIPE_API_KEY}
     webhook-secret: ${STRIPE_WEBHOOK_SECRET}
+
