@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { ClickOutside } from 'ngxtension/click-outside';
-import { Auth0Service } from '../../auth/auth0.service';
+import { Oauth2Service } from '../../auth/oauth2.service';
 
 
 @Component({
@@ -15,19 +15,25 @@ import { Auth0Service } from '../../auth/auth0.service';
 })
 export class NavbarComponent implements OnInit {
 
-  authService= inject(Auth0Service);
+  oauth2Service= inject(Oauth2Service);
+
+  connectedUserQuery = this.oauth2Service.connectedUserQuery;
 
   login(): void {
     this.closeDropDownMenu();
-    this.authService.login();
+    this.oauth2Service.login();
   }
 
   logout(): void {
     this.closeDropDownMenu();
+    this.oauth2Service.logout();
   }
 
   isConnected(): boolean {
-    return false;
+    return (
+      this.connectedUserQuery?.status() === 'success' &&
+      this.connectedUserQuery?.data()?.email !== this.oauth2Service.notConnected
+    );
   }
 
   closeDropDownMenu() {

@@ -26,4 +26,9 @@ public class UsersResource {
     RestUser restUser = RestUser.from(authenticatedUser);
     return ResponseEntity.ok(restUser);
   }
+
+  @GetMapping("test")
+  public ResponseEntity<String> getTest() {
+    return ResponseEntity.ok("Getting test successfully");
+  }
 }

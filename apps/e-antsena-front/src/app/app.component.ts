@@ -6,6 +6,7 @@ import { fontAwesomeIcons } from './shared/font-awesome-icons';
 import { NavbarComponent } from "./layout/navbar/navbar.component";
 import { FooterComponent } from "./layout/footer/footer.component";
 import { isPlatformBrowser } from '@angular/common';
+import { Oauth2Service } from './auth/oauth2.service';
 
 @Component({
   standalone: true,
@@ -25,9 +26,14 @@ export class AppComponent implements OnInit{
 
   plateformID= inject(PLATFORM_ID);
 
+  oauth2Service= inject(Oauth2Service);
+
   constructor() {
     if (isPlatformBrowser(this.plateformID)) {
+      this.oauth2Service.initAuthentication();
     }
+
+    this.oauth2Service.connectedUserQuery= this.oauth2Service.fetch();
   }
 
   ngOnInit(): void {
